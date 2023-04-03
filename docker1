@@ -1,0 +1,29 @@
+FROM ubuntu:16.04
+FROM python:3.9
+
+# Set the working directory to /app
+WORKDIR /FinalHackathon
+
+# Copy the requirements file to the container
+COPY requirements.txt /FinalHackathon//requirements.txt
+
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code to the container
+COPY . /FinalHackathon//
+
+# Expose port 8501 for Streamlit
+EXPOSE 8501
+
+# Start the Streamlit app when the container launches
+#CMD streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+#CMD streamlit run --server.port 8080 --server.address 0.0.0.0 app.py
+#CMD streamlit run C:\Users\Ashish vernekar\Documents\FInalHackathon/app1.py
+CMD ["streamlit", "run", "/FinalHackathon/app1.py"]
+
+
+
+LABEL Name=my-app
+LABEL Version=1.0
